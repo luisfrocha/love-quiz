@@ -1,7 +1,8 @@
 {
   "version": 2,
   "builds": [{
-    "src": "package.json",
-    "use": "@now/static-build"
+    "src": "nuxt.config.js",
+    "use": "@nuxtjs/now-builder",
+    "config": {}
   }]
 }
