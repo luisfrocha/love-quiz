@@ -22,9 +22,9 @@
           class="elevation-5"
         >
           <template #content>
-            <div class="app-grid">
+            <div class="p-grid">
               <div
-                class="p-col"
+                class="p-col-12 p-lg-6"
                 v-for="(option, index2) in question"
                 :key="`${index2}`"
               >
@@ -74,17 +74,16 @@
           </template>
         </card>
       </template>
-      <card v-if="currQuestion === questions.length" class="p-shadow-4">
+      <card v-if="currQuestion === questions.length" class="p-shadow-4 p-mt-3">
         <template #content>
           <chart
             type="pie"
             :data="testResults"
             :options="chartOptions"
-            :height="100"
           />
         </template>
-        <template #footer>
-          <p-button @click="resetTest">{{ t("startOver") }}</p-button>
+        <template #header>
+          <p-button @click="resetTest" class="p-m-2 p-button-sm">{{ t("startOver") }}</p-button>
         </template>
       </card>
     </div>
@@ -187,9 +186,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .app-container {
-    padding-top: 90px;
-  }
   .p-steps .p-steps-item:before {
     margin-top: inherit;
   }

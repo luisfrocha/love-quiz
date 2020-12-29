@@ -1,27 +1,31 @@
 <template>
   <toolbar class="p-shadow-2">
     <template #left>
-      <div class="p-fluid">
-        <div class="p-text-bold p-text-uppercase">{{ t("header") }}</div>
-        <div class="p-text-light p-text-italic author">{{ t("author") }}</div>
+      <div class="p-grid">
+        <div class="p-text-bold p-text-uppercase p-col-12">{{ t("header") }}</div>
+        <div class="p-text-light p-text-italic author p-col-12">{{ t("author") }}</div>
       </div>
     </template>
 
     <template #right>
-      <span class="p-buttonset">
-        <p-button
-          label="English"
-          :class="{ 'p-button-outlined': locale !== 'en' }"
-          class="p-button-sm"
-          @click="locale = 'en'"
-        />
-        <p-button
-          label="Español"
-          :class="{ 'p-button-outlined': locale !== 'es' }"
-          class="p-button-sm"
-          @click="locale = 'es'"
-        />
-      </span>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <span class="p-buttonset">
+            <p-button
+              label="English"
+              :class="{ 'p-button-outlined': locale !== 'en' }"
+              class="p-button-sm button"
+              @click="locale = 'en'"
+            />
+            <p-button
+              label="Español"
+              :class="{ 'p-button-outlined': locale !== 'es' }"
+              class="p-button-sm button"
+              @click="locale = 'es'"
+            />
+          </span>
+        </div>
+      </div>
     </template>
   </toolbar>
 </template>
@@ -44,12 +48,10 @@
 </script>
 
 <style lang="scss" scoped>
-  .p-toolbar {
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-  }
   .author {
     font-size: 90%;
+  }
+  .button {
+    font-size: 0.5em !important;
   }
 </style>
