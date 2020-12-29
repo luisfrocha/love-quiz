@@ -1,0 +1,38 @@
+export default {
+  en: {
+    header: 'Five Love Languages Test',
+    author: 'Author: Dr. Gary Chapman',
+    question: 'Question',
+    description: 'Read each pair of statements and choose the one that best describes you',
+    categories: {
+      a: 'Words of Affirmation',
+      b: 'Quality Time',
+      c: 'Receiving Gifts',
+      d: 'Acts of Service',
+      e: 'Physical Touch',
+    },
+    previous: 'Previous',
+    next: 'Next',
+    of: 'of',
+    resultsHeader: 'Test Results',
+    startOver: 'Start Again',
+  },
+  es: {
+    header: 'Prueba de los Cinco Lenguajes del Amor',
+    author: 'Autor: Dr. Gary Chapman',
+    question: 'Pregunta',
+    description: 'Lee cada par de descripciones y selecciona la que mejor te describe',
+    categories: {
+      a: 'Palabras de Ratificación',
+      b: 'Tiempo de Calidad',
+      c: 'Recibir Regalos',
+      d: 'Actos Serviciales',
+      e: 'Contacto Físico',
+    },
+    previous: 'Anterior',
+    next: 'Siguiente',
+    of: 'de',
+    resultsHeader: 'Resultados del Test',
+    startOver: 'Empezar de Nuevo',
+  },
+};
