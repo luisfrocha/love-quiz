@@ -38,13 +38,13 @@
 
   export default defineComponent( {
     components: { PButton: Button, Toolbar },
-    setup () {
+    setup() {
       const i18n = useI18n( { useScope: 'global' } );
       const { t, locale } = i18n;
 
       return { t, locale };
     }
-  } )
+  } );
 </script>
 
 <style lang="scss" scoped>
