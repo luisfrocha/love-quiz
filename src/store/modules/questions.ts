@@ -400,7 +400,7 @@ const state = {
       {
         category: 'd',
         text: {
-          en: 'I Like to know that you are concerned enough to help me with my daily tasks',
+          en: 'I like to know that you are concerned enough to help me with my daily tasks',
           es: 'Me gusta saber que te preocupas suficiente como para ayudarme con mis tareas diarias',
         },
       },
@@ -488,9 +488,18 @@ const state = {
   ],
 };
 
+interface Answer {
+  question: number;
+  answer: string;
+}
+
+interface State {
+  answers: string[];
+  currQuestion: number;
+}
 // getters
 const getters = {
-  answsers: state => state.answers,
+  answsers: ( state: State ) => state.answers,
 };
 
 // actions
@@ -498,17 +507,17 @@ const actions = {};
 
 // mutations
 const mutations = {
-  nextQuestion(state) {
+  nextQuestion( state: State ) {
     state.currQuestion++;
   },
-  previousQuestion(state) {
+  previousQuestion( state: State ) {
     state.currQuestion--;
   },
-  resetQuiz(state) {
+  resetQuiz( state: State ) {
     state.answers = [];
     state.currQuestion = 0;
   },
-  setAnswer(state, answer) {
+  setAnswer( state: State, answer: Answer ) {
     state.answers[answer.question] = answer.answer;
   },
 };

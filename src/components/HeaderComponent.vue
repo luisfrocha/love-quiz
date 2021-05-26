@@ -32,19 +32,19 @@
 
 <script>
   import { defineComponent } from 'vue';
-  import { useI18n } from 'vue-i18n/dist/vue-i18n.cjs';
+  import { useI18n } from 'vue-i18n';
   import Button from 'primevue/button';
   import Toolbar from 'primevue/toolbar';
 
   export default defineComponent( {
     components: { PButton: Button, Toolbar },
-    setup () {
+    setup() {
       const i18n = useI18n( { useScope: 'global' } );
       const { t, locale } = i18n;
 
       return { t, locale };
     }
-  } )
+  } );
 </script>
 
 <style lang="scss" scoped>
