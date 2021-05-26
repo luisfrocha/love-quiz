@@ -400,7 +400,7 @@ const state = {
       {
         category: 'd',
         text: {
-          en: 'I Like to know that you are concerned enough to help me with my daily tasks',
+          en: 'I like to know that you are concerned enough to help me with my daily tasks',
           es: 'Me gusta saber que te preocupas suficiente como para ayudarme con mis tareas diarias',
         },
       },
