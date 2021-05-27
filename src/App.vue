@@ -137,6 +137,7 @@
       const answers = computed( () => store.state.questions.answers );
       const currQuestion = computed( () => store.state.questions.currQuestion );
       const questions = computed( () => store.state.questions.questions );
+      const categories = computed(()=>store.state.categories.categories);
       const header = computed( () => [ `${ t( 'question' ) } ${ currQuestion.value + 1 } ${ t( 'of' ) } ${ questions.value.length }` ] );
       const text = ref( 'Prime' );
       const message = ref( null );
@@ -154,43 +155,6 @@
       const resetTest = () => {
         store.commit( 'questions/resetQuiz' );
       };
-      const categories = ref( [
-        {
-          category: "a",
-          text: {
-            en: "Words of Affirmation",
-            es: "Palabras de Ratificación"
-          }
-        },
-        {
-          category: "b",
-          text: {
-            en: "Quality Time",
-            es: "Tiempo de Calidad"
-          }
-        },
-        {
-          category: "c",
-          text: {
-            en: "Receiving Gifts",
-            es: "Recibir Regalos"
-          }
-        },
-        {
-          category: "d",
-          text: {
-            en: "Acts of Service",
-            es: "Actos Serviciales"
-          }
-        },
-        {
-          category: "e",
-          text: {
-            en: "Physical Touch",
-            es: "Contacto Físico"
-          }
-        }
-      ] );
 
       const catTotals = computed(
         () => categories.value
@@ -210,7 +174,6 @@
         dataLabels: {
           enabled: true,
           formatter: function(val: any, opts: { w: { globals: { labels: { [x: string]: any; }; }; }; seriesIndex: string|number; }){
-            console.log(val, opts);
             return opts.w.globals.labels[opts.seriesIndex];
           },
           style: {

@@ -499,7 +499,7 @@ interface State {
 }
 // getters
 const getters = {
-  answsers: ( state: State ) => state.answers,
+  answers: ( state: State ) => state.answers,
 };
 
 // actions
