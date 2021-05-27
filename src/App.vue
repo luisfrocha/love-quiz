@@ -102,7 +102,9 @@
           <p-button
             @click="resetTest"
             class="p-m-2 p-button-sm"
-          >{{ t("startOver") }}</p-button>
+          >
+            {{ t("startOver") }}
+          </p-button>
         </template>
       </card>
     </div>
@@ -113,31 +115,32 @@
   import { computed, defineComponent, ref } from 'vue';
   import { useStore } from 'vuex';
   import { useI18n } from 'vue-i18n';
-  import HeaderComponent from './components/HeaderComponent.vue';
-  import Button from 'primevue/button';
+  import { Category, CategoryTotal } from './store/modules/categories';
+  import { Answer, Question } from './store/modules/questions';
   import Card from 'primevue/card';
   import Chips from 'primevue/chips';
   import Divider from 'primevue/divider';
+  import HeaderComponent from './components/HeaderComponent.vue';
+  import PButton from 'primevue/button';
   import Steps from 'primevue/steps';
-
-  interface Answer {
-    category: string;
-  }
-
-  interface Question {
-
-  }
 
   export default defineComponent( {
     name: 'App',
-    components: { PButton: Button, Card, Chips, Divider, HeaderComponent, Steps },
+    components: {
+      Card,
+      Chips,
+      Divider,
+      HeaderComponent,
+      PButton,
+      Steps,
+    },
     setup () {
       const { t, locale } = useI18n();
       const store = useStore();
       const answers = computed( () => store.state.questions.answers );
       const currQuestion = computed( () => store.state.questions.currQuestion );
       const questions = computed( () => store.state.questions.questions );
-      const categories = computed(()=>store.state.categories.categories);
+      const categories = computed( () => store.state.categories.categories );
       const header = computed( () => [ `${ t( 'question' ) } ${ currQuestion.value + 1 } ${ t( 'of' ) } ${ questions.value.length }` ] );
       const text = ref( 'Prime' );
       const message = ref( null );
@@ -158,14 +161,14 @@
 
       const catTotals = computed(
         () => categories.value
-          .map( cat => cat.category )
-          .map( cat => ( {
+          .map( ( cat: Category ) => cat.category )
+          .map( ( cat: string ) => ( {
             cat: t( `categories.${ cat }` ),
             total: answers.value.filter( ( answer: string ) => answer === cat ).length,
           } ) )
-          .sort( ( a, b ) => b.total - a.total ) );
+          .sort( ( a: CategoryTotal, b: CategoryTotal ) => b.total - a.total ) );
 
-      const series = computed( () => catTotals.value.map( entry => entry.total ) );
+      const series = computed( () => catTotals.value.map( ( entry: CategoryTotal ) => entry.total ) );
       const chartOptions = computed( () => ( {
         chart: {
           type: 'donut',
@@ -173,18 +176,18 @@
         colors: [ '#8d528f', '#bfa0bf', '#f1f1f1', '#b3e9b7', '#68de7e' ],
         dataLabels: {
           enabled: true,
-          formatter: function(val: any, opts: { w: { globals: { labels: { [x: string]: any; }; }; }; seriesIndex: string|number; }){
-            return opts.w.globals.labels[opts.seriesIndex];
+          formatter: function ( val: any, opts: { w: { globals: { labels: { [ x: string ]: any; }; }; }; seriesIndex: string | number; } ) {
+            return opts.w.globals.labels[ opts.seriesIndex ];
           },
           style: {
             fontSize: '0.9em',
-            colors: ['#b3e9b7', '#68de7e', '#8d528f', '#8d528f', '#b3e9b7']
+            colors: [ '#b3e9b7', '#68de7e', '#8d528f', '#8d528f', '#b3e9b7' ]
           }
         },
         tooltip: {
           enabled: false,
         },
-        labels: catTotals.value.map( entry => `${ entry.cat } - ${ entry.total }` ),
+        labels: catTotals.value.map( ( entry: CategoryTotal ) => `${ entry.cat } - ${ entry.total }` ),
         responsive: [ {
           breakpoint: 480,
           options: {
@@ -203,27 +206,31 @@
         }
       } ) );
 
-      const items = computed( () => store.state.questions.questions.map( ( item: Question, index: number ) => ( { label: `${ index + 1 }` } ) ) );
+      const items = computed(
+        (): string[] => store.state.questions.questions.map(
+          ( item: Question, index: number ) => ( { label: `${ index + 1 }` } )
+        )
+      );
 
       return {
-        items,
-        currQuestion,
+        answers,
         categories,
-        questions,
-        text,
-        header,
         chartOptions,
+        currQuestion,
+        header,
+        items,
+        locale,
         message,
         optionSelected,
-        showNextQuestion,
-        showPreviousQuestion,
-        toggleSelection,
-        answers,
+        questions,
         resetTest,
         series,
-        t,
-        locale,
+        showNextQuestion,
+        showPreviousQuestion,
         store,
+        text,
+        toggleSelection,
+        t,
       };
     }
   } );

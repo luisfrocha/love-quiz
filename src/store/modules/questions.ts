@@ -488,9 +488,14 @@ const state = {
   ],
 };
 
-interface Answer {
+export interface Question {
+
+}
+
+export interface Answer {
   question: number;
   answer: string;
+  category: string;
 }
 
 interface State {

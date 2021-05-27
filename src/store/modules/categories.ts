@@ -40,16 +40,21 @@ const state = {
   ],
 };
 
-interface CategoryLabels {
+export interface CategoryLabels {
   en: string;
   es: string;
 }
 
 type CategoryType = 'a' | 'b' | 'c' | 'd' | 'e';
 
-interface Category {
+export interface Category {
   category: CategoryType;
   text: CategoryLabels;
+}
+
+export interface CategoryTotal {
+  cat: string;
+  total: number;
 }
 
 interface State {
