@@ -112,7 +112,7 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent, ref } from 'vue';
+  import { computed, defineComponent, ref, watchEffect } from 'vue';
   import { useStore } from 'vuex';
   import { useI18n } from 'vue-i18n';
   import { Category, CategoryTotal } from './store/modules/categories';
@@ -145,6 +145,9 @@
       const text = ref( 'Prime' );
       const message = ref( null );
       const optionSelected = computed( () => !!answers.value[ currQuestion.value ] );
+      watchEffect(() => {
+        document.title = locale.value === 'en' ? 'Five Love Language Test' : 'Prueba de Cinco Lenguajes de Amor';
+      })
       const showNextQuestion = () => {
         store.commit( 'questions/nextQuestion' );
       };
